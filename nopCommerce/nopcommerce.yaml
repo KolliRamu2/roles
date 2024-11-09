@@ -11,10 +11,10 @@
    become: yes
    hosts: Db
    roles:
-      - name: Installing Sql
-        role: geerlingguy.mysql
-        vars:
-         #Creating Users 
+     - name: Installing Sql
+       role: geerlingguy.mysql
+       vars:
+       #Creating Users 
          mysql_user_home: /nop
          mysql_user_name: nop
          mysql_user_password: nop
