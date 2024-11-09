@@ -12,9 +12,9 @@
    hosts: Db
    roles:
        role:
-       - name: Installing Sql
-         role: geerlingguy.mysql
-         vars:
+        - name: Installing Sql
+          role: geerlingguy.mysql
+          vars:
            #Creating Users 
            mysql_user_home: /nop
            mysql_user_name: nop
