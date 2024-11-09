@@ -3,7 +3,7 @@
    hosts: App
    roles:
      - name: install nop 
-       role: 'roles'
+       role: "roles/nop"
      
 
 # Playbook for Mysql
@@ -13,7 +13,7 @@
    roles:
        role:
        - name: Installing Sql
-         role: 'geerlingguy.mysql'
+         role: geerlingguy.mysql
 
        - name: Creating Users 
          mysql_user_home: /nop
