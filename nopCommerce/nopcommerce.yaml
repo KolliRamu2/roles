@@ -2,7 +2,7 @@
    become: yes
    hosts: App
    roles:
-     - name: install nop 
+     - name: install_nop 
        roles: '/roles/nop'
      
 
@@ -11,24 +11,25 @@
    become: yes
    hosts: Db
    roles:
-      - name: Installing Sql
-        role: 'geerlingguy.mysql'
+       role:
+       - name: Installing Sql
+         role: 'geerlingguy.mysql'
 
-      - name: Creating Users 
-        mysql_user_home: /nop
-        mysql_user_name: nop
-        mysql_user_password: nop
+       - name: Creating Users 
+         mysql_user_home: /nop
+         mysql_user_name: nop
+         mysql_user_password: nop
       
-      - name: creating root Users
-        mysql_root_home: /root
-        mysql_root_username: root
-        mysql_root_password: root
+       - name: creating root Users
+         mysql_root_home: /root
+         mysql_root_username: root
+         mysql_root_password: root
         
 
-      - name: data base details
-        mysql_port: "3306"
-        mysql_bind_address: '0.0.0.0'
-        mysql_datadir: /var/lib/mysql
+       - name: data base details
+         mysql_port: "3306"
+         mysql_bind_address: '0.0.0.0'
+         mysql_datadir: /var/lib/mysql
         
       
    
