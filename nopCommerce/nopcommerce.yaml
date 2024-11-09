@@ -3,7 +3,7 @@
    hosts: App
    roles:
      - name: install nop 
-       roles: '/home/devops/roles/nop'
+       roles: '/roles/nop'
      
 
 # Playbook for Mysql
