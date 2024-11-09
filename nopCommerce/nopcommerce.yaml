@@ -2,7 +2,7 @@
    become: yes
    hosts: App
    roles:
-     - name : installing nop 
+     - name: installing nop 
        roles: 'roles/nop'
      
 
