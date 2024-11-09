@@ -1,0 +1,23 @@
+---
+# vars file for nop
+
+# variables for apt
+package:
+  - aspnetcore-runtime-8.0
+  - unzip
+# variables for User 
+username: nop 
+password: nop
+shell : /bin/sh
+home_dir: /var/lib/nopCommerce
+# variables for Download and unzip the file
+ZIP_FILE: 'https://github.com/nopSolutions/nopCommerce/releases/download/release-4.70.5/nopCommerce_4.70.5_NoSource_linux_x64.zip'
+# variables for folders
+path:
+  - bin
+  - logs
+# variables for service file
+URL: http://0.0.0.0:5000
+# variables for template
+dest_service: /usr/lib/systemd/system
+service_name: nopCommerce

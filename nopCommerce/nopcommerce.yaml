@@ -1,0 +1,35 @@
+ - name: nopCommerce
+   become: yes
+   hosts: App
+   roles:
+     - name : installing nop 
+       roles: 'roles/nop'
+     
+
+# Playbook for Mysql
+ - name: Installing DB
+   become: yes
+   hosts: Db
+   roles:
+      - name: Installing Sql
+        role: 'geerlingguy.mysql'
+
+      - name: Creating Users 
+        mysql_user_home: /nop
+        mysql_user_name: nop
+        mysql_user_password: nop
+      
+      - name: creating root Users
+        mysql_root_home: /root
+        mysql_root_username: root
+        mysql_root_password: root
+        
+
+      - name: data base details
+        mysql_port: "3306"
+        mysql_bind_address: '0.0.0.0'
+        mysql_datadir: /var/lib/mysql
+        
+      
+   
+

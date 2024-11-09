@@ -1,0 +1,11 @@
+---
+# handlers file for demo
+ - name: Reload enable reload the service file
+   ansible.builtin.systemd_service:
+     name: '{{service_name}}'
+     state: restarted
+ - name: The status of application after changes in service file
+   ansible.builtin.debug:
+     msg: the system is successfully reloaded.
+     verbosity: 1
+      

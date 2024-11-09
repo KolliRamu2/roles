@@ -1,0 +1,116 @@
+---
+# tasks file for demo
+
+      - name: Checking it running on Ubuntu OS
+        ansible.builtin.fail:
+          msg: This application runs on Ubuntu Distribution
+        when: ansible_facts['os_family'] !="Debian"
+
+      - name: installing donet and unzip
+        ansible.builtin.apt:
+          name: '{{ item }}'
+          update_cache : yes
+          state: present
+        loop: "{{ package }}"
+      - name: The status of package installation
+        ansible.builtin.debug:
+          msg: '{{item}} has successfully installed'
+          verbosity: 1
+        loop: "{{ package }}"
+      
+      - name: Creating User and giving required permissions
+        ansible.builtin.user:
+          name: '{{username}}'
+          password: '{{password}}'
+          shell: '{{shell}}'
+          create_home: yes
+          home: '{{home_dir}}'
+      - name: The status of User creation
+        ansible.builtin.debug:
+          msg: '{{username}} has successfully installed'
+          verbosity: 1
+      
+      
+      - name: Dowload and unzip the file in to home directory
+        ansible.builtin.unarchive:
+         src: '{{ZIP_FILE}}'
+         dest: '{{home_dir}}'
+         owner: '{{username}}'
+         remote_src: yes
+      - name: The status of downloading and unziping the file
+        ansible.builtin.debug:
+          msg: '{{ZIP_FILE}} has successfully downloaded and unzipped'
+          verbosity: 1
+      
+
+      - name: Creating the required folders at home directory
+        ansible.builtin.file:
+          path: '{{home_dir}}/{{item}}'
+          owner : '{{username}}'
+          state: directory
+        loop: '{{path}}'
+      - name: The status of  and unziping the file
+        ansible.builtin.debug:
+          msg: '{{item}} has successfully created at home directory'
+          verbosity: 1
+        loop: '{{path}}'
+      
+
+      #- name: copy the files from /tmp to home directory
+      #  ansible.builtin.copy:
+      #    src: '{{dest}}'
+      #    owner: '{{username}}'
+      #    dest: '{{home_dir}}'
+      #    remote_src: yes
+      #- name: The status of copying the file in to home directory
+      #  ansible.builtin.debug:
+      #    msg: 'the file has successfully copied in to {{home_dir}} home directory'
+      #   verbosity: 1
+      
+
+      - name: Copying servicefile from ansible control node
+        ansible.builtin.template:
+          src: nopCommerce.service.j2
+          dest: '{{dest_service}}/{{service_name}}.service'
+        notify: 
+          - Reload enable reload the service file
+
+      - name: The status of copying the file from ansible control to managed nodes
+        ansible.builtin.debug:
+          msg: 'the file has successfully copied in to {{dest_service}} with service name{{service_name}}.service'
+          verbosity: 1
+      
+        
+      - name: daemon-reload enable start the service file
+        ansible.builtin.systemd_service:
+          name: '{{service_name}}'
+          daemon_reload: yes
+          enabled: yes
+          state: started
+      - name: The status of application 
+        ansible.builtin.debug:
+          msg: Service is running is successfully
+          verbosity: 1
+      
+
+   
+        
+
+
+               
+
+           
+           
+          
+
+
+
+       
+
+        
+      
+      
+
+      
+
+
