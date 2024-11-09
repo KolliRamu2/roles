@@ -2,7 +2,8 @@
    become: yes
    hosts: App
    roles:
-      - 'nop'
+     - name: install_nop 
+       role: '/roles'
      
 
 # Playbook for Mysql
