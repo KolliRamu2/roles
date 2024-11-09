@@ -13,21 +13,20 @@
    roles:
      - name: Installing Sql
        role: geerlingguy.mysql
-       mysql_user_home: /nop
-       mysql_user_name: nop
-       mysql_user_password: nop
         #creating root Users
        mysql_root_home: /root
        mysql_root_username: root
        mysql_root_password: root
-       #- name: data base details
+       #data base details
        mysql_port: "3306"
        mysql_bind_address: '0.0.0.0'
        mysql_datadir: /var/lib/mysql
+       # Creating data Bases
        mysql_databases: 
          - name: nopdb
            encoding: utf8
            collation: utf8_general_ci
+        # creating users
        mysql_users:
         - name: nop
           host: "%"
