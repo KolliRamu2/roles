@@ -11,8 +11,8 @@
    become: yes
    hosts: Db
    roles:
-     #- name: Installing Sql
-     - role: geerlingguy.mysql
+     - name: Installing Sql
+       role: geerlingguy.mysql
        mysql_user_home: /nop
        mysql_user_name: nop
        mysql_user_password: nop
